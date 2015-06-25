@@ -5,9 +5,9 @@ Search code in GitHub repos
 
 This tool uses [octokit.rb](https://github.com/octokit/octokit.rb) and [Sinatra](http://www.sinatrarb.com/)
 
-Constuct a URL: server/search-code/:keyword/:account
+Constuct a URL: server/search-code/:keyword/:language/:account
 
-In this exmample we search for "Ext.ComponentQuery" in [RallyCommunity](https://github.com/RallyCommunity)
+In this exmample we search for "Ext.ComponentQuery" in js files in [RallyCommunity](https://github.com/RallyCommunity)
 
 ![](pic.png)
 
