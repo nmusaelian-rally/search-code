@@ -7,7 +7,7 @@ This tool uses [octokit.rb](https://github.com/octokit/octokit.rb) and [Sinatra]
 
 Constuct a URL: server/search-code/:keyword/:language/:account
 
-In this exmample we search for "Ext.ComponentQuery" in js files in [RallyCommunity](https://github.com/RallyCommunity)
+In this exmample we search for "this.callParent(arguments)" in js files in [RallyCommunity](https://github.com/RallyCommunity)
 
 ![](pic.png)
 
