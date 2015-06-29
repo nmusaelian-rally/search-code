@@ -4,12 +4,18 @@ require 'sinatra'
 enable :sessions
 
 get '/' do
-  "search code in github repos"
+  erb :search
 end
+
+post '/form' do
+  redirect "/search-code/#{params[:keyword]}/#{params[:language]}/#{params[:account]}"
+end
+
 get '/search-code/:words/:language/:user' do
   data = get_data(params[:words],params[:language],params[:user])
-  erb :results, :locals => {:total_count => data[:total_count], :results => data[:html_urls]}
+  erb :results, :locals => {:total_count => data[:total_count], :results => data[:urls]}
 end
+
 not_found do
   session[:message] = request.fullpath
   redirect "/not-found"
@@ -25,12 +31,12 @@ end
 
 def get_data(word,language,user)
   data = Hash.new
-  client = Octokit::Client.new :access_token => `echo $MYGHTOKEN` 
+  client = Octokit::Client.new :access_token => ENV["MYGHTOKEN"]  
   results = client.search_code("#{word} language:#{language} user:#{user}")
   data[:total_count] = results.total_count
-  data[:html_urls] = Array.new
+  data[:urls] = Array.new
   results.items.each do |x|
-    data[:html_urls] << x[:html_url]
+    data[:urls] << {:name => x[:name], :repo_name => x[:repository][:name], :html_url => x[:html_url]}
   end
   return data
 end

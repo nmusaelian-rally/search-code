@@ -1,6 +1,6 @@
 Found <%= total_count %> results
 <p>
 <% results.each do |result| %>
-  <a href=<%= result %>><%= result %></a>
+  <a href=<%= result[:html_url] %>><%= "#{result[:repo_name]}/#{result[:name]}" %></a>
   <p>
 <% end %>
