@@ -31,7 +31,8 @@ end
 
 def get_data(word,language,user)
   data = Hash.new
-  client = Octokit::Client.new :access_token => ENV["MYGHTOKEN"]  
+  client = Octokit::Client.new :access_token => ENV["MYGHTOKEN"]
+  client.auto_paginate = true
   results = client.search_code("#{word} language:#{language} user:#{user}")
   data[:total_count] = results.total_count
   data[:urls] = Array.new
